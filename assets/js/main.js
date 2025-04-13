@@ -1,10 +1,10 @@
 /**
- * Template Name: AgriCulture
- * Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
- * Updated: Aug 07 2024 with Bootstrap v5.3.3
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
- */
+* Template Name: AgriCulture
+* Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
+* Updated: Aug 07 2024 with Bootstrap v5.3.3
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
 
 (function() {
   "use strict";
@@ -34,7 +34,7 @@
 
     if (scrollTop > lastScrollTop && scrollTop > selectHeader.offsetHeight) {
       selectHeader.style.setProperty('position', 'sticky', 'important');
-      selectHeader.style.top = `-${selectHeader.offsetHeight + 50}px`;
+      selectHeader.style.top = `-${header.offsetHeight + 50}px`;
     } else if (scrollTop > selectHeader.offsetHeight) {
       selectHeader.style.setProperty('position', 'sticky', 'important');
       selectHeader.style.top = "0";
@@ -66,24 +66,20 @@
         mobileNavToogle();
       }
     });
+
   });
 
   /**
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', toggleDropdown); // Add click listener
-    navmenu.addEventListener('touchstart', toggleDropdown); // Add touchstart listener
+    navmenu.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle('active');
+      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      e.stopImmediatePropagation();
+    });
   });
-
-  function toggleDropdown(e) {
-    e.preventDefault();
-    if (e.type === 'click' || e.type === 'touchstart') {
-        this.parentNode.classList.toggle('active');
-        this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-    }
-    e.stopImmediatePropagation();
-  }
 
   /**
    * Preloader
