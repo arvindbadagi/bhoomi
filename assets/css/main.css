@@ -33,8 +33,8 @@
   --nav-hover-color: #116530; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #f8f9fa; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #212529; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #fffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-color: #343a40; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #007bff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -331,7 +331,7 @@ h6 {
   }
 
   .navmenu .dropdown ul a i {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .navmenu .dropdown ul a:hover,
@@ -440,15 +440,19 @@ h6 {
   }
 
   .navmenu .dropdown ul {
-    position: static;
-    display: none;
-    z-index: 99;
+    margin: 0;
     padding: 10px 0;
-    margin: 10px 20px;
-    background-color: var(--nav-dropdown-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    box-shadow: none;
-    transition: all 0.5s ease-in-out;
+    background: var(--nav-dropdown-background-color);
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 5px; /* Rounded corners for a softer look */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 99;
   }
 
   .navmenu .dropdown ul ul {
