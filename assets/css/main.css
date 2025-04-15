@@ -259,6 +259,36 @@ h6 {
     padding: 0;
   }
 
+ /* Base styles */
+.nav-link {
+  display: inline-block;  /* Allows padding and margin */
+  background-color: #a5d6a7;
+  color: #004d40;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;  /* Smooth hover effect */
+}
+
+.nav-link:hover {
+  background-color: #8bc34a; /* Darker shade for hover */
+  color: #ffffff; /* Change text color on hover for contrast */
+}
+
+.nav-link.active {
+  /* Enhance styling for the active link if needed */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for emphasis */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .nav-link {
+      padding: 10px;  /* Increase padding for touch targets */
+      font-size: 1.1rem; /* Slightly larger font size for readability */
+  }
+}
+
   .navmenu ul {
     margin: 0;
     padding: 0;
