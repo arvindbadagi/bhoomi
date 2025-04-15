@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -21,457 +21,656 @@
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-    <link href="assets/css/main.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #004d40;
+            --secondary-color: #00796b;
+            --accent-color: #a8d5ba;
+            --light-bg: #e4f0e3;
+            --text-color: #333;
+            --text-light: #f5f5f5;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
-            color: #333;
-            line-height: 1.2; /* Increased line-height for better readability */
-            background: linear-gradient(135deg, #e0f7fa, #f0f4c3);
+            color: var(--text-color);
+            line-height: 1.5;
+            background: linear-gradient(135deg, #f0f9f8, #d1ece7);
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         #header {
-            background-color: #00796b;
+            background-color: var(--primary-color);
             color: white;
-            padding: 10px 0; /* Increased padding */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 8px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         #header .logo img {
-            max-height: 70px; /* Slightly larger logo */
+            max-height: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        #header .logo img:hover {
+            transform: scale(1.05);
         }
 
         #navmenu ul li a {
-            font-size: 1.75rem; /* Increased font size */
+            font-size: 1.1rem;
             color: white;
-            transition: color 0.3s ease, background-color 0.3s ease; /* Added background color transition */
-            padding: 8px 12px; /* Increased padding */
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 500;
         }
 
         #navmenu ul li a:hover,
         #navmenu ul li a.active {
-            background-color: #a5d6a7; /* Added background color on hover */
-            color: #004d40;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
             text-decoration: none;
         }
 
-        .website-links-section {
-            padding: 15px 0; /* Increased padding */
-            background-color: #f8f8f8;
-            border: 1px solid #004d40;
-            border-radius: 6px;
-            margin: 10px 5px; /* Adjusted margin */
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 76px);
+            padding: 10px 0;
         }
 
-        .website-links-section h2 {
+        .sidebar {
+            width: 260px;
+            background-color: #fff;
+            padding: 15px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+            overflow-y: auto;
+            position: sticky;
+            top: 76px;
+            max-height: calc(100vh - 76px);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
-            margin-bottom: 15px; /* Increased margin */
-            font-size: 1.5rem; /* Increased header size */
-            color: #00695c;
-            line-height: 1.3; /* Increased line height */
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 0 0 20px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button:hover {
+            background: linear-gradient(135deg, #00695c, #003d33);
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-button i {
+            margin-right: 8px;
+            font-size: 1rem;
         }
 
         .website-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px; /* Increased gap between items */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
 
         .website-link-item {
             background-color: #fff;
-            padding: 15px; /* Increased padding */
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Increased the shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+            margin-bottom: 0;
         }
 
         .website-link-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
         }
 
         .website-link-item h3 {
             text-align: center;
-            margin-bottom: 10px; /* Increased margin */
-            background-color: #b2dfdb;
-            padding: 10px; /* Increased padding */
-            border-radius: 5px;
-            font-size: 1.1rem; /* Increased font size */
-            color: #004d40;
-            transition: background-color 0.3s ease;
-            line-height: 1.2; /* Increased line height */
-            font-weight: bold;
+            margin: -15px -15px 12px -15px;
+            background-color: var(--accent-color);
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        .website-link-item h3:hover {
+        .website-link-item:hover h3 {
             background-color: #80cbc4;
         }
 
         .website-link-item ul {
-            list-style-type: disc;
-            padding-left: 15px;
-            font-size: 1rem; /* Increased font size */
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+            font-size: 0.95rem;
         }
 
         .website-link-item li {
-            margin-bottom: 5px; /* Increased margin */
-            line-height: 1.2; /* Increased line height */
+            margin-bottom: 8px;
+            padding: 5px 0 5px 20px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .website-link-item li:before {
+            content: "→";
+            position: absolute;
+            left: 5px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
         }
 
         .website-link-item a {
             display: block;
             text-decoration: none;
-            color: #00897b;
+            color: var(--secondary-color);
             font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 4px; /* Increased padding */
+            transition: all 0.2s ease;
+            padding: 2px 3px;
             border-radius: 3px;
-            font-size: 0.85rem; /* Increased font size */
+            font-size: 1rem;
         }
 
         .website-link-item a:hover {
-            color: #004d40;
-            background-color: #e0f7fa; /* Added a background color on hover */
+            color: var(--primary-color);
+            background-color: rgba(168, 213, 186, 0.3);
+            transform: translateX(3px);
+        }
+
+        .visitor-counter {
+            background: linear-gradient(135deg, var(--primary-color), #003d33);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .visitor-counter p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .visitor-counter span {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .sidebar-title {
+            margin: 10px 0 12px;
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .powerbi-container {
+            margin-top: 25px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .powerbi-title {
+            text-align: center;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .powerbi-iframe {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .powerbi-iframe iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
         }
 
         #footer {
-            background-color: #004d40;
-            color: #b2dfdb;
+            background: linear-gradient(135deg, var(--primary-color), #002822);
+            color: #e0f7fa;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            padding: 15px;
             text-align: center;
-            padding: 15px 0; /* Increased padding */
-            line-height: 1.2; /* Increased line height */
+            color: #e0f7fa;
+        }
+
+        .copyright {
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: #ffccbc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #ffab91;
+            text-decoration: underline;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: none;
+                position: relative;
+                top: 0;
+                margin-bottom: 15px;
+                border-radius: 0 0 8px 8px;
+            }
+
+            .nav-button {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            .website-links-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
-            .website-links-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .website-link-item {
-                padding: 15px; /* Increased padding */
-            }
-
-            .website-links-section h2 {
-                font-size: 1.2rem; /* Increased header size */
+            .section-title {
+                font-size: 1.5rem;
+                padding: 10px;
             }
 
             #navmenu ul {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 50px;
+                top: 60px;
                 left: 0;
                 width: 100%;
-                background-color: #00796b;
+                background-color: var(--secondary-color);
                 text-align: center;
                 z-index: 1000;
+                padding: 10px 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             }
 
             #navmenu.mobile-active ul {
                 display: flex;
             }
 
-            #navmenu .mobile-nav-toggle {
+            .mobile-nav-toggle {
                 display: block;
                 color: white;
-                font-size: 20px; /* Increased font size for toggle */
+                font-size: 1.5rem;
                 cursor: pointer;
+            }
+
+            .website-link-item {
+                padding: 12px;
+            }
+
+            .website-link-item h3 {
+                font-size: 1rem;
+            }
+
+            .website-link-item li {
+                font-size: 0.9rem;
             }
         }
 
-        .section-buttons {
-            text-align: center;
-            margin-top: 10px; /* Adjusted margin */
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .section-buttons button {
-            background-color: #00897b;
-            color: white;
-            padding: 10px 25px; /* Increased padding */
-            border: none;
-            border-radius: 6px;
-            margin: 6px; /* Increased margin */
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            font-size: 1rem; /* Increased font size */
+        .website-link-item {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
         }
 
-        .section-buttons button:hover {
-            background-color: #00695c;
-            transform: translateY(-2px); /* Enhanced hover effect */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
-        }
+        .website-link-item:nth-child(1) { animation-delay: 0.1s; }
+        .website-link-item:nth-child(2) { animation-delay: 0.2s; }
+        .website-link-item:nth-child(3) { animation-delay: 0.3s; }
+        .website-link-item:nth-child(4) { animation-delay: 0.4s; }
+        .website-link-item:nth-child(5) { animation-delay: 0.5s; }
+        .website-link-item:nth-child(6) { animation-delay: 0.6s; }
+        .website-link-item:nth-child(7) { animation-delay: 0.7s; }
+        .website-link-item:nth-child(8) { animation-delay: 0.8s; }
+        .website-link-item:nth-child(9) { animation-delay: 0.9s; }
+        .website-link-item:nth-child(10) { animation-delay: 1.0s; }
+        .website-link-item:nth-child(11) { animation-delay: 1.1s; }
+        .website-link-item:nth-child(12) { animation-delay: 1.2s; }
+        .website-link-item:nth-child(13) { animation-delay: 1.3s; }
+        .website-link-item:nth-child(14) { animation-delay: 1.4s; }
+        .website-link-item:nth-child(15) { animation-delay: 1.5s; }
+        .website-link-item:nth-child(16) { animation-delay: 1.6s; }
+        .website-link-item:nth-child(17) { animation-delay: 1.7s; }
 
-        .powerbi-iframe {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .powerbi-iframe iframe {
-            width: 95%;
-            height: 600px;
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 
 <body class="index-page">
 
-    <header id="header" class="header d-flex align-items-center position-relative">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="Revenue Department Karnataka">
-            </a>
-            <nav id="navmenu" class="navmenu">
-                <ul>
-                    <li>
-                        <a href="index.html" class="nav-link active" aria-current="page" title="Go to Home Page">Home</a>
-                    </li>
-                </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-            </nav>
+    <header id="header" class="header d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center justify-content-start">
+          <!-- Logo aligned to the left -->
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="Bhoomi Bidar | Govt. of Karnataka">
+          </a>
         </div>
-    </header>
+      </header>
+      
+    
+    
 
-    <main class="main">
-        <section class="website-links-section">
-            <div class="container">
-                <h3 style="
-                background-color: #b2dfdb; 
-                padding: 15px; 
-                border-radius: 12px; 
-                text-align: center; 
-                color: #f80f07; 
-                font-size: 35px; /* Increased font size from 35px to 40px */
-                font-weight: bold; 
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-                margin: 10px 0;
-            ">
-                Important Website Links
-            </h3>
-                <div class="section-buttons">
-                    <button onclick="scrollToSection('Land Conversion')">Land Conversion</button>
-                    <button onclick="scrollToSection('Land Beat')">Land Beat</button>
-                    <button onclick="scrollToSection('RTC Management')">RTC Management</button>
-                    <button onclick="scrollToSection('RTC Online')">RTC Online</button>
-                    <button onclick="scrollToSection('Mojini')">Mojini</button>
-                    <button onclick="scrollToSection('Bhoomi')">Bhoomi</button>
-                    <button onclick="scrollToSection('RCCMS')">RCCMS</button>
-                    <button onclick="scrollToSection('Sub Register')">Sub Register</button>
-                    <button onclick="scrollToSection('Record Room')">Record Room</button>
-                    <button onclick="scrollToSection('Parihara')">Parihara</button>
-                    <button onclick="scrollToSection('Aadhar Seeding RTC')">Aadhar Seeding RTC</button>
-                    <button onclick="scrollToSection('Bagair Hukum Rejection')">Bagair Hukum Rejection</button>
-                    <button onclick="scrollToSection('Bagair Hukum')">Bagair Hukum</button>
-                    <button onclick="scrollToSection('Form 1 to 5')">Form 1 to 5</button>
-                    <button onclick="scrollToSection('Reports')">Reports</button>
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="visitor-counter">
+                <p>Visitors: <span id="visitorCount">0</span></p>
+            </div>
+            
+            <h4 class="sidebar-title">Quick Navigation</h4>
+            
+            <button class="nav-button" onclick="scrollToSection('Land Conversion')"><i class="bi bi-arrow-right-circle"></i> Land Conversion</button>
+            <button class="nav-button" onclick="scrollToSection('Land Beat')"><i class="bi bi-arrow-right-circle"></i> Land Beat</button>
+            <button class="nav-button" onclick="scrollToSection('RTC Management')"><i class="bi bi-arrow-right-circle"></i> RTC Management</button>
+            <button class="nav-button" onclick="scrollToSection('RTC Online')"><i class="bi bi-arrow-right-circle"></i> RTC Online</button>
+            <button class="nav-button" onclick="scrollToSection('Mojini')"><i class="bi bi-arrow-right-circle"></i> Mojini</button>
+            <button class="nav-button" onclick="scrollToSection('Bhoomi')"><i class="bi bi-arrow-right-circle"></i> Bhoomi</button>
+            <button class="nav-button" onclick="scrollToSection('RCCMS')"><i class="bi bi-arrow-right-circle"></i> RCCMS</button>
+            <button class="nav-button" onclick="scrollToSection('Sub Register')"><i class="bi bi-arrow-right-circle"></i> Sub Register</button>
+            <button class="nav-button" onclick="scrollToSection('Record Room')"><i class="bi bi-arrow-right-circle"></i> Record Room</button>
+            <button class="nav-button" onclick="scrollToSection('Parihara')"><i class="bi bi-arrow-right-circle"></i> Parihara</button>
+            <button class="nav-button" onclick="scrollToSection('Aadhar Seeding RTC')"><i class="bi bi-arrow-right-circle"></i> Aadhar Seeding RTC</button>
+            <button class="nav-button" onclick="scrollToSection('Bagair Hukum Rejection')"><i class="bi bi-arrow-right-circle"></i> Bagair Hukum Rejection</button>
+            <button class="nav-button" onclick="scrollToSection('Bagair Hukum')"><i class="bi bi-arrow-right-circle"></i> Bagair Hukum</button>
+            <button class="nav-button" onclick="scrollToSection('Form 1 to 5')"><i class="bi bi-arrow-right-circle"></i> Form 1 to 5</button>
+            <button class="nav-button" onclick="scrollToSection('Reports')"><i class="bi bi-arrow-right-circle"></i> Reports</button>
+            <button class="nav-button" onclick="scrollToSection('Ex Servicemen')"><i class="bi bi-arrow-right-circle"></i> Ex Servicemen</button>
+            <button class="nav-button" onclick="scrollToSection('Land Availability')"><i class="bi bi-arrow-right-circle"></i> Land Availability</button>
+            <button class="nav-button" onclick="scrollToSection('Plantation on Lease')"><i class="bi bi-arrow-right-circle"></i> Plantation on Lease</button>
+        </aside>
+
+        <main class="content-area">
+            <h3 class="section-title">Important Website Links</h3>
+
+            <div class="website-links-grid">
+                <div class="website-link-item" id="Land Conversion">
+                    <h3>Land Conversion</h3>
+                    <ul>
+                        <li><a href="http://landrecords.karnataka.gov.in/rd" target="_blank">Home</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service80" target="_blank">Status</a></li>
+                        <li><a href="https://landconversion.karnataka.gov.in/service99" target="_blank">Order Print</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/citizenportal/" target="_blank">Citizen</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service132/Home/Report" target="_blank">Approved Dates</a></li>
+                        <li><a href="https://landconversion.karnataka.gov.in/Service74/afdlcreport/" target="_blank">Report with Userid</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service52/" target="_blank">Patta Land</a></li>
+                        <li><a href="https://drive.google.com/file/d/1kfVSS16jLfueQHF93jD4UqA5TvapA22n/view" target="_blank">User Manual</a></li>
+                    </ul>
                 </div>
-                <div class="website-links-grid">
-                    <div class="website-link-item" id="Land Conversion">
-                        <h3>Land Conversion</h3>
-                        <ul>
-                            <li><a href="http://landrecords.karnataka.gov.in/rd" target="_blank">Home</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service80" target="_blank">Status</a></li>
-                            <li><a href="https://landconversion.karnataka.gov.in/service99" target="_blank">Order Print</a>
-                            </li>
-                            <li><a href="https://landrecords.karnataka.gov.in/citizenportal/" target="_blank">Citizen</a>
-                            </li>
-                            <li>
-                                <a href="https://landrecords.karnataka.gov.in/service132/Home/Report" target="_blank">Approved
-                                    Dates</a></li>
-                            <li><a href="https://landconversion.karnataka.gov.in/Service74/afdlcreport/" target="_blank">Report with Userid</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service52/" target="_blank">Patta Land</a></li>
-                            <li><a href="https://drive.google.com/file/d/1kfVSS16jLfueQHF93jD4UqA5TvapA22n/view" target="_blank">User Manual</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Land Beat">
-                        <h3>Land Beat</h3>
-                        <ul>
-                            <li><a href="https://rdservices.karnataka.gov.in/service57" target="_blank">RI Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service57" target="_blank">Tahsildar</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service55" target="_blank">Reports</a></li>
-                            <li><a href="https://drive.google.com/file/d/1f0d_0vNj2lumqXyhIcpCEaiSozKlQP15/view" target="_blank">User Manual</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="RTC Management">
-                        <h3>RTC Management</h3>
-                        <ul>
-                            <li><a href="https://landrecords.karnataka.gov.in/Service109/rtcmgm/" target="_blank">Home</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service109/rtc_mgm_mis/" target="_blank">Report & Status</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service85/Login1.aspx" target="_blank">Old
-                                    Jslip
-                                    Approval AC</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/service82/" target="_blank">SLAO Case
-                                    Worker</a>
-                            </li>
-                            <li><a href="https://parihara.karnataka.gov.in/service83" target="_blank">SLAO Login</a></li>
-                            <li><a href="https://drive.google.com/file/d/1ijq0FEE7QNTJ9BG_QC0HdEZeCxgiPsE6/view" target="_blank">User Manual</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="RTC Online">
-                        <h3>RTC Online</h3>
-                        <ul>
-                            <li><a href="https://landrecords.karnataka.gov.in/Service2/" target="_blank">RTC, MR,
-                                    Mutation</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service40/PendcySurveyNoWiseRpt" target="_blank">MR History</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service150" target="_blank">RTC for VAO</a></li>
-                            <li><a href="https://rdreports.karnataka.gov.in/" target="_blank">RTC Detailed Report</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Mojini">
-                        <h3>Mojini</h3>
-                        <ul>
-                            <li><a href="https://www.rdservices.karnataka.gov.in/" target="_blank">Home</a></li>
-                            <li><a href="https://bhoomojini.karnataka.gov.in/SERVICE30/RRTCase/RRT_Report" target="_blank">Datewise Report</a></li>
-                            <li><a href="https://bhoomojini.karnataka.gov.in/service24/" target="_blank">RRT & LND
-                                    Report</a></li>
-                            <li><a href="https://bhoomojini.karnataka.gov.in/service19/" target="_blank">View Sketch</a></li>
-                            <li><a href="https://bhoomojini.karnataka.gov.in/service39/" target="_blank">Akarband</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/Service10" target="_blank">Phodi Status and
-                                    Report</a></li>
-                            <li><a href="https://bhoomojini.karnataka.gov.in/service19/report/Applicationdetails" target="_blank">Sketch Printing</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Bhoomi">
-                        <h3>Bhoomi</h3>
-                        <ul>
-                            <li><a href="https://www.govtanalytics.karnataka.gov.in/bhoomidi/" target="_blank">DI
-                                    Ranking</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/Service147/" target="_blank">Pendancy</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service60/" target="_blank">Mutation
-                                    Status</a></li>
-                            <li><a href="https://www.landrecords.karnataka.gov.in/service40/" target="_blank">Report
-                                    Villagewise</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/Service121" target="_blank">Mutation
-                                    Report</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="RCCMS">
-                        <h3>RCCMS</h3>
-                        <ul>
-                            <li><a href="https://rccms.karnataka.gov.in/rccms/" target="_blank">Home</a></li>
-                            <li><a href="https://rccms.karnataka.gov.in/RCCMS/rccmsreports/searchcase.aspx" target="_blank">Status</a></li>
-                            <li><a href="https://drive.google.com/file/d/1UWhpQjtJO4Q5TFKAJO1R7LefQE3QDKwL/view" target="_blank">User Manual</a></li>
-                            <li><a href="https://drive.google.com/file/d/1wI1G3GACukFrGSWNWbLsHjhRCd2Nu7hP/view" target="_blank">Order Typing</a></li>
-                            <li><a href="https://drive.google.com/file/d/1oR_ns2Qc7T3yAOcjDtgTPjjsU60hCiMh/view" target="_blank">RCCMS Manual</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Sub Register">
-                        <h3>Sub Register</h3>
-                        <ul>
-                            <li><a href="https://landrecords.karnataka.gov.in/service146" target="_blank">Jslip
-                                    Status</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service159" target="_blank">Eswathu
-                                    Status</a></li>
-                            <li><a href="https://eswathu.karnataka.gov.in/Issue0fForm9/Frm_PublicSearchForm9.aspx" target="_blank">Status</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Record Room">
-                        <h3>Record Room</h3>
-                        <ul>
-                            <li><a href="https://recordroom.karnataka.gov.in/ERECORDROOM/" target="_blank">Home</a></li>
-                            <li><a href="https://recordroom.karnataka.gov.in/reports" target="_blank">Reports</a></li>
-                            <li><a href="https://drive.google.com/file/d/1JrxZr50PYNiG4wF_Flt_zWr0HCxoALr4/view" target="_blank">User Manual</a></li>
-                            <li><a href="https://drive.google.com/file/d/1XkqOQrtxGxLF1j4Wf2dU4SE53h3VqG4a/view" target="_blank">Manual</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Parihara">
-                        <h3>Parihara</h3>
-                        <ul>
-                            <li><a href="https://parihara.karnataka.gov.in/Pariharahome/" target="_blank">Home</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/service89/PaymentDetailsReport.aspx" target="_blank">Payment Details</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/service22/" target="_blank">Data Entry
-                                    Progress</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/pariharausermgmt" target="_blank">User
-                                    Management</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/CropCollectionVAO" target="_blank">Crop Data Entry
-                                    VAO</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/CropCollectionTah/" target="_blank">Approval
-                                    Tahsildar</a></li>
-                            <li><a href="https://parihara.karnataka.gov.in/CropReportApproval/" target="_blank">DC & AC
-                                    Approval</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Aadhar Seeding RTC">
-                        <h3>Aadhar Seeding RTC</h3>
-                        <ul>
-                            <li><a href="https://rdservices.karnataka.gov.in/service62" target="_blank">VAO Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service82" target="_blank">Status</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service63" target="_blank">Reports</a></li>
-                            <li><a href="https://drive.google.com/file/d/1KTZne5fnaX9SsUvRpChqW7EBJjaKdrEm/view" target="_blank">User Manual</a></li>
-                            <li><a href="https://drive.google.com/file/d/12I5-u-BUX-c-K9YJudGaF86XMimTFfl_/view" target="_blank">RTC Verification Manual</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Bagair Hukum Rejection">
-                        <h3>Bagair Hukum Rejection</h3>
-                        <ul>
-                            <li><a href="https://rdservices.karnataka.gov.in/service43" target="_blank">VAO Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service88" target="_blank">RI Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service89" target="_blank">DT Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">TCCW</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service52" target="_blank">Tahsildar</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service52" target="_blank">DC</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Bagair Hukum">
-                        <h3>Bagair Hukum</h3>
-                        <ul>
-                            <li><a href="https://rdservices.karnataka.gov.in/service54" target="_blank">Main website</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service43" target="_blank">VAO Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">RI Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">DT Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">Tahsildar Login</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">Committee</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">TCCW</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service87" target="_blank">Application
-                                    Status</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service131/form57/" target="_blank">Form 57
-                                    Report</a></li>
-                            <li><a href="https://bhoomi.karnataka.gov.in/FORM5053/" target="_blank">Form 50 53 Count</a>
-                            </li>
-                            <li><a href="https://bhoomojini.karnataka.gov.in/service55" target="_blank">BH Mojini
-                                    Status</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service149" target="_blank">Form 50 & 53 Rec
-                                    Cases</a></li>
-                            <li><a href="https://docs.google.com/presentation/d/1yTfMzC8J0UYHy14w69OnfOXF-5gnXRXG/edit#slide=id.p1" target="_blank">User Manual</a></li>
-                            <li><a href="https://drive.google.com/file/d/1X7xGaE1umvzLI2BNqEE2LpJPkr2vpKHv/view" target="_blank">Work Flow</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Form 1 to 5">
-                        <h3>Form 1 to 5</h3>
-                        <ul>
-                            <li><a href="https://rdservices.karnataka.gov.in/service73" target="_blank">Shirestedar</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service43" target="_blank">VAO</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service75" target="_blank">RI</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service76" target="_blank">Tahsildar</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service79" target="_blank">ADLR</a></li>
-                            <li><a href="https://drive.google.com/file/d/1mVmhPfuAi2C-h2sxIjC7gjs-2zNjq8eS/view" target="_blank">User Manual</a></li>
-                            <li><a href="https://drive.google.com/file/d/1DSkH85TNgINg4zDQsdmd8WbRQyoGlag-/view" target="_blank">Work Flow</a></li>
-                            <li><a href="https://drive.google.com/file/d/1Pihc2p3_1M5I6i0LADe1j8SWp6KzTYyw/view" target="_blank">DFO & Tahsildar</a></li>
-                        </ul>
-                    </div>
-                    <div class="website-link-item" id="Reports">
-                        <h3>Reports</h3>
-                        <ul>
-                            <li><a href="https://rdservices.karnataka.gov.in/service81" target="_blank">1 to 5 Report</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/Service51/" target="_blank">Bagair Hukum</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service63" target="_blank">Aadhar Seeding</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/service55" target="_blank">Land Beat</a></li>
-                            <li><a href="https://rdservices.karnataka.gov.in/Service68" target="_blank">Hakku Patra</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service147/bhoomipendency/" target="_blank">Bhoomi Pendancy</a></li>
-                            <li><a href="https://landrecords.karnataka.gov.in/service110" target="_blank">MIS RTC, 3 & 9, Pyki Mismatch</a></li>
+                <div class="website-link-item" id="Land Beat">
+                    <h3>Land Beat</h3>
+                    <ul>
+                        <li><a href="https://rdservices.karnataka.gov.in/service57" target="_blank">RI Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service57" target="_blank">Tahsildar</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service55" target="_blank">Reports</a></li>
+                        <li><a href="https://drive.google.com/file/d/1f0d_0vNj2lumqXyhIcpCEaiSozKlQP15/view" target="_blank">User Manual</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="RTC Management">
+                    <h3>RTC Management</h3>
+                    <ul>
+                        <li><a href="https://landrecords.karnataka.gov.in/Service109/rtcmgm/" target="_blank">Home</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service109/rtc_mgm_mis/" target="_blank">Report & Status</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service85/Login1.aspx" target="_blank">Old Jslip Approval AC</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/service82/" target="_blank">SLAO Case Worker</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/service83" target="_blank">SLAO Login</a></li>
+                        <li><a href="https://drive.google.com/file/d/1ijq0FEE7QNTJ9BG_QC0HdEZeCxgiPsE6/view" target="_blank">User Manual</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="RTC Online">
+                    <h3>RTC Online</h3>
+                    <ul>
+                        <li><a href="https://landrecords.karnataka.gov.in/Service2/" target="_blank">RTC, MR, Mutation</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service40/PendcySurveyNoWiseRpt" target="_blank">MR History</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service150" target="_blank">RTC for VAO</a></li>
+                        <li><a href="https://rdreports.karnataka.gov.in/" target="_blank">RTC Detailed Report</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Mojini">
+                    <h3>Mojini</h3>
+                    <ul>
+                        <li><a href="https://www.rdservices.karnataka.gov.in/" target="_blank">Home</a></li>
+                        <li><a href="https://bhoomojini.karnataka.gov.in/SERVICE30/RRTCase/RRT_Report" target="_blank">Datewise Report</a></li>
+                        <li><a href="https://bhoomojini.karnataka.gov.in/service24/" target="_blank">RRT & LND Report</a></li>
+                        <li><a href="https://bhoomojini.karnataka.gov.in/service19/" target="_blank">View Sketch</a></li>
+                        <li><a href="https://bhoomojini.karnataka.gov.in/service39/" target="_blank">Akarband</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/Service10" target="_blank">Phodi Status and Report</a></li>
+                        <li><a href="https://bhoomojini.karnataka.gov.in/service19/report/Applicationdetails" target="_blank">Sketch Printing</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Bhoomi">
+                    <h3>Bhoomi</h3>
+                    <ul>
+                        <li><a href="https://www.govtanalytics.karnataka.gov.in/bhoomidi/" target="_blank">DI Ranking</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/Service147/" target="_blank">Pendancy</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service60/" target="_blank">Mutation Status</a></li>
+                        <li><a href="https://www.landrecords.karnataka.gov.in/service40/" target="_blank">Report Villagewise</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/Service121" target="_blank">Mutation Report</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="RCCMS">
+                    <h3>RCCMS</h3>
+                    <ul>
+                        <li><a href="https://rccms.karnataka.gov.in/rccms/" target="_blank">Home</a></li>
+                        <li><a href="https://rccms.karnataka.gov.in/RCCMS/rccmsreports/searchcase.aspx" target="_blank">Status</a></li>
+                        <li><a href="https://drive.google.com/file/d/1UWhpQjtJO4Q5TFKAJO1R7LefQE3QDKwL/view" target="_blank">User Manual</a></li>
+                        <li><a href="https://drive.google.com/file/d/1wI1G3GACukFrGSWNWbLsHjhRCd2Nu7hP/view" target="_blank">Order Typing</a></li>
+                        <li><a href="https://drive.google.com/file/d/1oR_ns2Qc7T3yAOcjDtgTPjjsU60hCiMh/view" target="_blank">RCCMS Manual</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Sub Register">
+                    <h3>Sub Register</h3>
+                    <ul>
+                        <li><a href="https://landrecords.karnataka.gov.in/service146" target="_blank">Jslip Status</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service159" target="_blank">Eswathu Status</a></li>
+                        <li><a href="https://eswathu.karnataka.gov.in/Issue0fForm9/Frm_PublicSearchForm9.aspx" target="_blank">Status</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Record Room">
+                    <h3>Record Room</h3>
+                    <ul>
+                        <li><a href="https://recordroom.karnataka.gov.in/ERECORDROOM/" target="_blank">Home</a></li>
+                        <li><a href="https://recordroom.karnataka.gov.in/reports" target="_blank">Reports</a></li>
+                        <li><a href="https://drive.google.com/file/d/1JrxZr50PYNiG4wF_Flt_zWr0HCxoALr4/view" target="_blank">User Manual</a></li>
+                        <li><a href="https://drive.google.com/file/d/1XkqOQrtxGxLF1j4Wf2dU4SE53h3VqG4a/view" target="_blank">Manual</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Parihara">
+                    <h3>Parihara</h3>
+                    <ul>
+                        <li><a href="https://parihara.karnataka.gov.in/Pariharahome/" target="_blank">Home</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/service89/PaymentDetailsReport.aspx" target="_blank">Payment Details</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/service22/" target="_blank">Data Entry Progress</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/pariharausermgmt" target="_blank">User Management</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/CropCollectionVAO" target="_blank">Crop Data Entry VAO</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/CropCollectionTah/" target="_blank">Approval Tahsildar</a></li>
+                        <li><a href="https://parihara.karnataka.gov.in/CropReportApproval/" target="_blank">DC & AC Approval</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Aadhar Seeding RTC">
+                    <h3>Aadhar Seeding RTC</h3>
+                    <ul>
+                        <li><a href="https://rdservices.karnataka.gov.in/service62" target="_blank">VAO Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service82" target="_blank">Status</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service63" target="_blank">Reports</a></li>
+                        <li><a href="https://drive.google.com/file/d/1KTZne5fnaX9SsUvRpChqW7EBJjaKdrEm/view" target="_blank">User Manual</a></li>
+                        <li><a href="https://drive.google.com/file/d/12I5-u-BUX-c-K9YJudGaF86XMimTFfl_/view" target="_blank">RTC Verification Manual</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Bagair Hukum Rejection">
+                    <h3>Bagair Hukum Rejection</h3>
+                    <ul>
+                        <li><a href="https://rdservices.karnataka.gov.in/service43" target="_blank">VAO Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service88" target="_blank">RI Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service89" target="_blank">DT Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">TCCW</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service52" target="_blank">Tahsildar</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service52" target="_blank">DC</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Bagair Hukum">
+                    <h3>Bagair Hukum</h3>
+                    <ul>
+                        <li><a href="https://rdservices.karnataka.gov.in/service54" target="_blank">Main website</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service43" target="_blank">VAO Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">RI Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">DT Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">Tahsildar Login</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">Committee</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service45" target="_blank">TCCW</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service87" target="_blank">Application Status</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service131/form57/" target="_blank">Form 57 Report</a></li>
+                        <li><a href="https://bhoomi.karnataka.gov.in/FORM5053/" target="_blank">Form 50 53 Count</a></li>
+                        <li><a href="https://bhoomojini.karnataka.gov.in/service55" target="_blank">BH Mojini Status</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service149" target="_blank">Form 50 & 53 Rec Cases</a></li>
+                        <li><a href="https://docs.google.com/presentation/d/1yTfMzC8J0UYHy14w69OnfOXF-5gnXRXG/edit#slide=id.p1" target="_blank">User Manual</a></li>
+                        <li><a href="https://drive.google.com/file/d/1X7xGaE1umvzLI2BNqEE2LpJPkr2vpKHv/view" target="_blank">Work Flow</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Form 1 to 5">
+                    <h3>Form 1 to 5</h3>
+                    <ul>
+                        <li><a href="https://rdservices.karnataka.gov.in/service73" target="_blank">Shirestedar</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service43" target="_blank">VAO</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service75" target="_blank">RI</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service76" target="_blank">Tahsildar</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service79" target="_blank">ADLR</a></li>
+                        <li><a href="https://drive.google.com/file/d/1mVmhPfuAi2C-h2sxIjC7gjs-2zNjq8eS/view" target="_blank">User Manual</a></li>
+                        <li><a href="https://drive.google.com/file/d/1DSkH85TNgINg4zDQsdmd8WbRQyoGlag-/view" target="_blank">Work Flow</a></li>
+                        <li><a href="https://drive.google.com/file/d/1Pihc2p3_1M5I6i0LADe1j8SWp6KzTYyw/view" target="_blank">DFO & Tahsildar</a></li>
+                    </ul>
+                </div>
+                <div class="website-link-item" id="Reports">
+                    <h3>Reports</h3>
+                    <ul>
+                        <li><a href="https://rdservices.karnataka.gov.in/service81" target="_blank">1 to 5 Report</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/Service51/" target="_blank">Bagair Hukum</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service63" target="_blank">Aadhar Seeding</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/service55" target="_blank">Land Beat</a></li>
+                        <li><a href="https://rdservices.karnataka.gov.in/Service68" target="_blank">Hakku Patra</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service147/bhoomipendency/" target="_blank">Bhoomi Pendancy</a></li>
+                        <li><a href="https://landrecords.karnataka.gov.in/service110" target="_blank">MIS RTC, 3 & 9, Pyki Mismatch</a></li>
+                        <li><a href="https://
                             <li><a href="https://rdservices.karnataka.gov.in/bhoomigis/" target="_blank">Bhoomi GIS</a></li>
                             <li><a href="https://landrecords.karnataka.gov.in/service154/" target="_blank">RTC and Mutation Extract </a></li>
                         </ul>
                     </div>
+                    <div class="website-link-item" id="Ex Servicemen">
+                        <h3>Ex Servicemen</h3>
+                        <ul>
+                            <li><a href="https://landrecords.karnataka.gov.in/Service155/exsm/" target="_blank">Data Entry</a></li>
+                            <li><a href="https://landrecords.karnataka.gov.in/service155/ExsmMisReport" target="_blank">Report</a></li>
+                            <li><a href="https://drive.google.com/file/d/1gNATgoBeNELIc7qH3Td-8585XdV8qu8B/view" target="_blank">User Manual</a></li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="website-link-item" id="Land Availability">
+                        <h3>Land Availability</h3>
+                        <ul>
+                            <li><a href="https://rdservices.karnataka.gov.in/landavailability_tccw" target="_blank">Data Entry TCCW</a></li>
+                            <li><a href="https://rdservices.karnataka.gov.in/landavailability_tah" target="_blank">Approval Tahsildar</a></li>
+                            <li><a href="https://drive.google.com/file/d/1TCFBgoJn_mpdGkfGIRmjWU2m3TKYZi9T/view" target="_blank">User Manual</a></li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="website-link-item" id="Plantation on Lease">
+                        <h3>Plantation on Lease</h3>
+                        <ul>
+                            <li><a href="https://landrecords.karnataka.gov.in/Service158/plantationlease/" target="_blank">Data Entry TCCW</a></li>
+                            <li><a href="https://drive.google.com/file/d/1nfwMclx1XHe2c5jHrxQF1VUTaxQgfUO9/view" target="_blank">User Manual</a></li>
+                            
+                        </ul>
+                    </div>
+
                 </div>
                 <div style="text-align: center; margin-top: 20px;">
-                    <p style="font-size: 1rem;">Visitors visited in this website: <span id="visitorCount">0</span></p>
+                    <!-- <p style="font-size: 1rem;">Visitors visited in this website: <span id="visitorCount">0</span></p> -->
                 </div>
                 <div class="powerbi-iframe">
                     <iframe title="Record_Room_Date_29032025" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMzg0ZmU4ZDQtMWNiMy00ZjQ5LThiM2QtNGEzYzFkMTFkZGNmIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9" frameborder="0" allowFullScreen="true">
