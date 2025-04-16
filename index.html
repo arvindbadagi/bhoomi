@@ -433,17 +433,20 @@
             <img src="assets/img/logo.png" alt="Bhoomi Bidar | Govt. of Karnataka">
           </a>
           
-          <!-- Deputy Commissioner Office text in one line with effects -->
-          <div class="dc-office-container">
+          <!-- Deputy Commissioner Office text with Karnataka emblem logo in round format -->
+          <div class="dc-office-container d-flex align-items-center">
+            <div class="emblem-container me-3">
+              <img src="path-to-your-emblem-image.png" alt="Karnataka State Emblem" class="emblem-image">
+            </div>
             <div class="dc-office-text">
-              <span class="office-title">Deputy Commissioner Office, Bidar</span>
+              <span class="office-title">Deputy Commissioner Office Bidar</span>
             </div>
           </div>
         </div>
       </header>
       
       <style>
-        /* Enhanced effects for DC Office text in one line */
+        /* Enhanced effects for DC Office text in one line with emblem */
         .dc-office-container {
           position: relative;
           overflow: hidden;
@@ -480,6 +483,26 @@
           font-size: 1.1rem;
           letter-spacing: 0.5px;
           text-transform: uppercase;
+        }
+        
+        /* Emblem styling - circular format */
+        .emblem-container {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          overflow: hidden;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          border: 2px solid #9e0059;
+        }
+        
+        .emblem-image {
+          width: 85%;
+          height: 85%;
+          object-fit: contain;
         }
         
         /* Add a subtle shine effect */
