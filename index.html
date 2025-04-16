@@ -427,13 +427,84 @@
 <body class="index-page">
 
     <header id="header" class="header d-flex align-items-center">
-        <div class="container-fluid d-flex align-items-center justify-content-start">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
           <!-- Logo aligned to the left -->
           <a href="index.html" class="logo d-flex align-items-center">
             <img src="assets/img/logo.png" alt="Bhoomi Bidar | Govt. of Karnataka">
           </a>
+          
+          <!-- Deputy Commissioner Office text in one line with effects -->
+          <div class="dc-office-container">
+            <div class="dc-office-text">
+              <span class="office-title">Deputy Commissioner Office, Bidar</span>
+            </div>
+          </div>
         </div>
       </header>
+      
+      <style>
+        /* Enhanced effects for DC Office text in one line */
+        .dc-office-container {
+          position: relative;
+          overflow: hidden;
+          padding: 2px;
+          border-radius: 6px;
+          background: linear-gradient(45deg, #ff4c00, #9e0059, #004d99, #006400);
+          background-size: 300% 300%;
+          animation: gradient-shift 8s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .dc-office-text {
+          display: flex;
+          align-items: center;
+          padding: 8px 20px;
+          background-color: rgba(255, 255, 255, 0.95);
+          border-radius: 4px;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .dc-office-container:hover .dc-office-text {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .office-title {
+          font-weight: 700;
+          color: #333;
+          font-size: 1.1rem;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+        
+        /* Add a subtle shine effect */
+        .dc-office-container::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          transform: rotate(45deg);
+          animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+          0% { left: -50%; top: -50%; }
+          100% { left: 150%; top: 150%; }
+        }
+      </style>
       
     
     
@@ -485,6 +556,7 @@
                 </div>
                 <div class="website-link-item" id="Land Beat">
                     <h3>Land Beat</h3>
+                    
                     <ul>
                         <li><a href="https://rdservices.karnataka.gov.in/service57" target="_blank">RI Login</a></li>
                         <li><a href="https://rdservices.karnataka.gov.in/service57" target="_blank">Tahsildar</a></li>
